@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Encryptor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        input[type="file"], input[type="password"], select, input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 8px 16px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: rgb(172, 32, 10);">Encrypted Document Management System</h1>
+    <h1>Upload a New File</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label>Category:</label>
+        <select name="category">
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+            <option value="sensitive">Sensitive</option>
+        </select><br>
+        <label>Password (for personal/sensitive):</label>
+        <input type="password" name="password"><br>
+        <input type="file" name="file"><br>
+        <input type="submit" value="Upload">
+    </form>
+
+    <h2>Uploaded Files</h2>
+    <ul>
+        {% for file in files %}
+            <li>
+                {{ file }}
+                <form action="/view/{{ file }}" method="get" style="display:inline;">
+                    <button type="submit">View</button>
+                </form>
+                <form action="/download/{{ file }}" method="get" style="display:inline;">
+                    <button type="submit">Download</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body><footer>
+    <h1 style="position: center; color: #0e32e6;"><b>Copyright Pavan Kumar Panda</b></h1>
+</footer>
+</html>
+
